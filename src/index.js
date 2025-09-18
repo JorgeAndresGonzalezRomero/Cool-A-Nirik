@@ -10,6 +10,12 @@ let lastHole = 0;
 let points = 0;
 let difficulty = "hard";
 
+
+//US-02 Basic Game Functionality
+
+// Keep track of the last hole so we don't pick it twice in a row
+let lastHole = null;
+
 /**
  * Generates a random integer within a range.
  *
@@ -20,7 +26,9 @@ let difficulty = "hard";
  *
  */
 function randomInteger(min, max) {
-  // return Math.floor(Math.random() * (max - min + 1)) + min;
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
 /**
@@ -39,8 +47,15 @@ function randomInteger(min, max) {
  *
  */
 function setDelay(difficulty) {
-  // TODO: Write your code here.
-  
+  if (difficulty === "easy") {
+    return 1500;
+  } else if (difficulty === "normal") {
+    return 1000;
+  } else if (difficulty === "hard") {
+    return randomInteger(600, 1200);
+  }
+  // Fallback to normal if an unexpected value is passed
+  return 1000;
 }
 
 /**
@@ -58,9 +73,18 @@ function setDelay(difficulty) {
  * chooseHole(holes) //> returns one of the 9 holes that you defined
  */
 function chooseHole(holes) {
-  // TODO: Write your code here.
+  if (!holes || holes.length === 0) return null;
 
+  let index, hole;
+  do {
+    index = randomInteger(0, holes.length - 1);
+    hole = holes[index];
+  } while (hole === lastHole);  // repeat if same as previous
+
+  lastHole = hole;
+  return hole;
 }
+
 
 /**
 *
