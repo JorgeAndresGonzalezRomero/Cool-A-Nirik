@@ -85,6 +85,8 @@ function chooseHole(holes) {
   return hole;
 }
 
+//US-03 Game Flow
+
 
 /**
 *
@@ -120,11 +122,18 @@ function gameOver() {
 * to call `showAndHide(hole, delay)`.
 *
 */
+
+//CONTROLL function showUp() {
+ // let delay = 0; // TODO: Update so that it uses setDelay()
+ // const hole = 0;  // TODO: Update so that it use chooseHole()
+ // return showAndHide(hole, delay);
+//}
 function showUp() {
-  let delay = 0; // TODO: Update so that it uses setDelay()
-  const hole = 0;  // TODO: Update so that it use chooseHole()
+  const delay = setDelay(currentDifficulty); // currentDifficulty is a global like "normal"
+  const hole = chooseHole(holes);
   return showAndHide(hole, delay);
 }
+
 
 /**
 *
@@ -134,16 +143,28 @@ function showUp() {
 * the timeoutID
 *
 */
-function showAndHide(hole, delay){
+
+
+//function showAndHide(hole, delay){}
   // TODO: call the toggleVisibility function so that it adds the 'show' class.
-  
+//MAY NEED TO CHANGE POSITION OF ToggleVisibility FUNCTION
+
+function showAndHide(hole, delay) {
+  toggleVisibility(hole); // show it
   const timeoutID = setTimeout(() => {
-    // TODO: call the toggleVisibility function so that it removes the 'show' class when the timer times out.
-    
-    gameOver();
-  }, 0); // TODO: change the setTimeout delay to the one provided as a parameter
+    toggleVisibility(hole); // hide it after delay
+    gameOver();             // check if we keep going
+  }, delay);
   return timeoutID;
 }
+
+  //const timeoutID = setTimeout(() => {
+    // TODO: call the toggleVisibility function so that it removes the 'show' class when the timer times out.
+    
+    // CONTROL gameOver();
+  //}, 0); // TODO: change the setTimeout delay to the one provided as a parameter
+ // return timeoutID;
+//}
 
 /**
 *
@@ -151,10 +172,23 @@ function showAndHide(hole, delay){
 * a given hole. It returns the hole.
 *
 */
-function toggleVisibility(hole){
+
+
+//For control function toggleVisibility(hole){
   // TODO: add hole.classList.toggle so that it adds or removes the 'show' class.
   
+ // return hole;
+//}
+//MAY NEED TO CHANGE POSITION
+function toggleVisibility(hole) {
+  hole.classList.toggle("show");
   return hole;
+}
+
+function startGame() {
+  setDuration(10); 
+  showUp();
+  return "game started";
 }
 
 /**
