@@ -282,6 +282,20 @@ function setEventListeners(moles){
   return moles;
 }
 
+//should add a second sprite for hit moles
+moles.forEach(mole => {
+  mole.addEventListener('click', () => {
+    score++;
+    scoreDisplay.textContent = score;
+
+    // show the splashed state
+    mole.classList.add('hit');
+
+    // revert to normal after a short delay
+    setTimeout(() => mole.classList.remove('hit'), 300);
+  });
+});
+
 setEventListeners(moles);
 
 /**
