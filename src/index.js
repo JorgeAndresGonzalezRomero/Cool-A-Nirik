@@ -110,6 +110,15 @@ function chooseHole(holes) {
 */
 function gameOver() {
   // TODO: Write your code here
+  function gameOver() {
+  if (time > 0) {
+    const timeoutId = showUp();
+    return timeoutId;
+  } else {
+    stopGame();
+    return "game stopped";
+  }
+}
   
 }
 
@@ -234,7 +243,12 @@ function clearScore() {
 function updateTimer() {
   // TODO: Write your code here.
   // hint: this code is provided to you in the instructions.
-  
+  if (time > 0) {
+    time -= 1;
+    timerDisplay.textContent = time;
+  } else {
+    clearInterval(timer);
+  }
   return time;
 }
 
@@ -246,7 +260,7 @@ function updateTimer() {
 */
 function startTimer() {
   // TODO: Write your code here
-  // timer = setInterval(updateTimer, 1000);
+   timer = setInterval(updateTimer, 1000);
   return timer;
 }
 
@@ -324,6 +338,13 @@ function startGame(){
   //setEventListeners();
   //startTimer();
   //showUp();
+  //left initial commented code as control
+  
+   clearScore();          // reset points
+  time = 10;             // or any duration you like
+  timerDisplay.textContent = time;
+  startTimer();          // start the countdown
+  showUp();              // start showing moles
   return "game started";
 }
 
