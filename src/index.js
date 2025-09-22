@@ -6,7 +6,7 @@ const timerDisplay = document.querySelector('#timer');
 
 let time = 0;
 let timer;
-let lastHole = 0;
+let lastHole = null;
 let points = 0;
 let difficulty = "hard";
 
@@ -111,8 +111,7 @@ function gameOver() {
   // TODO: Write your code here
   
   if (time > 0) {
-    const timeoutId = showUp();
-    return timeoutId;
+    return showUp();
   } else {
     stopGame();
     return "game stopped";
@@ -191,11 +190,7 @@ function toggleVisibility(hole) {
   return hole;
 }
 
-function startGame() {
-  setDuration(10); 
-  showUp();
-  return "game started";
-}
+
 
 
 
@@ -269,7 +264,7 @@ function startTimer() {
 * the moles.
 *
 */
-function whack(event) {
+function whack() {
   // TODO: Write your code here.
   // call updateScore()
   updateScore();
@@ -338,7 +333,7 @@ function startGame(){
   //left initial commented code as control
   
    clearScore();          // reset points
-  time = 10;             // or any duration you like
+  setDuration(10);           // or any duration you like
   timerDisplay.textContent = time;
   startTimer();          // start the countdown
   showUp();              // start showing moles
