@@ -13,8 +13,7 @@ let difficulty = "hard";
 
 //US-02 Basic Game Functionality
 
-// Keep track of the last hole so we don't pick it twice in a row
-let lastHole = null;
+
 
 /**
  * Generates a random integer within a range.
@@ -110,7 +109,7 @@ function chooseHole(holes) {
 */
 function gameOver() {
   // TODO: Write your code here
-  function gameOver() {
+  
   if (time > 0) {
     const timeoutId = showUp();
     return timeoutId;
@@ -118,8 +117,6 @@ function gameOver() {
     stopGame();
     return "game stopped";
   }
-}
-  
 }
 
 /**
@@ -138,7 +135,7 @@ function gameOver() {
  // return showAndHide(hole, delay);
 //}
 function showUp() {
-  const delay = setDelay(currentDifficulty); // currentDifficulty is a global like "normal"
+  const delay = setDelay(difficulty); 
   const hole = chooseHole(holes);
   return showAndHide(hole, delay);
 }
