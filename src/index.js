@@ -267,6 +267,8 @@ function startTimer() {
 function whack() {
   // TODO: Write your code here.
   // call updateScore()
+  event.target.classList.add("splash");
+  setTimeout(() => event.target.classList.remove("splash"), 400);
   updateScore();
   return points;
 }
