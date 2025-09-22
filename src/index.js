@@ -191,6 +191,11 @@ function startGame() {
   return "game started";
 }
 
+
+
+//US-04 - Whack!!
+
+
 /**
 *
 * This function increments the points global variable and updates the scoreboard.
@@ -202,8 +207,8 @@ function startGame() {
 *
 */
 function updateScore() {
-  // TODO: Write your code here
-
+  points += 1;
+  score.textContent = points;
   return points;
 }
 
@@ -216,8 +221,8 @@ function updateScore() {
 */
 function clearScore() {
   // TODO: Write your code here
-  // points = 0;
-  // score.textContent = points;
+   points = 0;
+   score.textContent = points;
   return points;
 }
 
@@ -256,6 +261,7 @@ function startTimer() {
 function whack(event) {
   // TODO: Write your code here.
   // call updateScore()
+  updateScore();
   return points;
 }
 
@@ -264,11 +270,13 @@ function whack(event) {
 * Adds the 'click' event listeners to the moles. See the instructions
 * for an example on how to set event listeners using a for loop.
 */
-function setEventListeners(){
+function setEventListeners(moles){
   // TODO: Write your code here
-
+  moles.forEach(mole => mole.addEventListener("click", whack));
   return moles;
 }
+
+setEventListeners(moles);
 
 /**
 *
