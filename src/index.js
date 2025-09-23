@@ -3,6 +3,7 @@ const moles = document.querySelectorAll('.mole');
 const startButton = document.querySelector('#start');
 const score = document.querySelector('#score');
 const timerDisplay = document.querySelector('#timer');
+const bgMusic = document.querySelector('#bg-music');
 
 let time = 0;
 let timer;
@@ -319,6 +320,7 @@ function setDuration(duration) {
 */
 function stopGame(){
   // stopAudio(song);  //optional
+  bgMusic.pause();
   clearInterval(timer);
   return "game stopped";
 }
@@ -353,6 +355,9 @@ function startGame(){
   timerDisplay.textContent = time;
   startTimer();          // start the countdown
   showUp();              // start showing moles
+  bgMusic.currentTime = 0;   // rewind to start
+  bgMusic.play().catch(err => console.log(err)); // browsers need user interaction first
+  // ...existing game-start code...
   return "game started";
 }
 
